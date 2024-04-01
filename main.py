@@ -15,18 +15,9 @@ if (len(sys.argv)>3):
 
 print (f"x={a}, y={b}, p={p}")
 
-time1 = time.time()
 mr = MontgomeryReducer(p)
 aval=mr.convert_in(a)
 bval=mr.convert_in(b)
 res=mr.convert_out(mr.multiply(aval,bval))
-time2 = time.time()
 
-print(time2-time1)
 print (f"({a}x{b}) (mod {p})={res}")
-
-time1 = time.time()
-res1 = (a*b)%p
-time2 = time.time()
-print(time2-time1)
-print(f"({a}x{b}) (mod {p})={res1}")
