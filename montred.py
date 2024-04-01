@@ -34,7 +34,6 @@ class MontgomeryReducer:
 		temp = ((product & self.mask) * self.factor) & self.mask
 		reduced = (product + temp * mod) >> self.reducerbits
 		result = reduced if (reduced < mod) else (reduced - mod)
-		assert 0 <= result < mod
 		return result
 	
 
