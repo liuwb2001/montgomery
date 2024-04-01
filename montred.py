@@ -14,23 +14,19 @@ class MontgomeryReducer:
 		self.mask = self.reducer - 1
 		assert self.reducer > mod and math.gcd(self.reducer, mod) == 1
 		
-		# Other computed numbers
 		self.reciprocal = MontgomeryReducer.reciprocal_mod(self.reducer % mod, mod)
 		self.factor = (self.reducer * self.reciprocal - 1) // mod
 		self.convertedone = self.reducer % mod
 	
-	
-	# The range of x is unlimited
+
 	def convert_in(self, x):
 		return (x << self.reducerbits) % self.modulus
 	
-	
-	# The range of x is unlimited
+
 	def convert_out(self, x):
 		return (x * self.reciprocal) % self.modulus
 	
 	
-	# Inputs and output are in Montgomery form and in the range [0, modulus)
 	def multiply(self, x, y):
 		mod = self.modulus
 		assert 0 <= x < mod and 0 <= y < mod
@@ -41,8 +37,7 @@ class MontgomeryReducer:
 		assert 0 <= result < mod
 		return result
 	
-	
-	# Input x (base) and output (power) are in Montgomery form and in the range [0, modulus); input y (exponent) is in standard form
+
 	def pow(self, x, y):
 		assert 0 <= x < self.modulus
 		if y < 0:
@@ -58,7 +53,6 @@ class MontgomeryReducer:
 	
 	@staticmethod
 	def reciprocal_mod(x, mod):
-		# Based on a simplification of the extended Euclidean algorithm
 		assert mod > 0 and 0 <= x < mod
 		y = x
 		x = mod
